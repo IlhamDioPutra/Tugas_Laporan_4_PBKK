@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Datang di Sistem Manajemen Sekolah</title> <!-- ini adalah halaman utama dan titel di judul  -->
-    <style>
-        /* ini adalah style agar linknya menjadi satu baris dan saling berjauhan karena ada margin */
-        a { 
-            display: inline-block;
-            margin: 50px;
-        }
-    </style>
+    {{-- Menampilkan tampilan selamat datang dan link penggunakan bootstrap --}}
+    <title>Selamat Datang di Sistem Manajemen Informatika</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <!-- Ini adalah teks yang menyambut user atau admin nantinya,nantinya seiring dengan tugas akhir mungkin ada beberapa perubahan
-    baik itu dari segi sistem atau tampilan web nya -->
-    <h1>Selamat Datang di Sistem Manajemen Sekolah</h1>
-    <p>Selamat datang di portal sekolah kami.</p>
-    <p>Ini adalah tempat untuk mengakses informasi sekolah dan sumber daya lainnya.</p>
+    <div class="container mt-5">
+        <div class="text-center">
+            {{-- Teks berisikan informasi --}}
+            <h1>Selamat Datang di Sistem Manajemen Informatika</h1>
+            <p>Selamat datang di portal.</p>
+            <p>Ini adalah tempat untuk mengakses informasi Informatika UNIB</p>
+        </div>
 
-    <!-- Ini adalah link penunjuk agar kita bisa pindah ke view kita lainnya yaitu melihat data siswa dan data guru-->
-    <a href="/dataSiswa">Data Siswa</a>
-    <a href="/dataGuru">Data Guru</a>
-    
+        <div class="text-center mt-4">
+            {{-- 2 buah button yang mengarahkan ke data mahasiswa dan satu lagi mengarah ke data Dosen --}}
+            <a href="/mahasiswa" class="btn btn-primary mr-3">Data Mahasiswa</a>
+            <a href="/dataGuru" class="btn btn-primary">Data Dosen</a>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

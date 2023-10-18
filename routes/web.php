@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\mahasiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +21,18 @@ Route::get('/', function () { //ini adalah routing default ketika kita sudah ter
 
 
 
-Route::get('/dataSiswa', function () { //ini adalah routing deault url kita tambahkan/dataSiswa pada
-    return view('dataSiswa');          //server laravel maka akan dialihkan ke halaman dataSiswa.blade.php dan ditampilkan halamannya
-});
+// Route::get('/dataSiswa', function () { //ini adalah routing deault url kita tambahkan/dataSiswa pada
+//     return view('dataSiswa');          //server laravel maka akan dialihkan ke halaman dataSiswa.blade.php dan ditampilkan halamannya
+// });
 
 Route::get('/dataGuru', function () { //ini adalah routing deault url kita tambahkan/dataGuru pada
     return view('dataGuru');          //server laravel maka akan dialihkan ke halaman dataGuru.blade.php dan ditampilkan halamannya
 });
+
+Route::resource('mahasiswa',mahasiswaController::class);
+
+
+
+
+// Route::get('/books', [BookController::class, "index"]);
+// Route::get('/books/store', [BookController::class, "store"]);
