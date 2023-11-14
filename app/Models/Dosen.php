@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mahasiswa extends Model
+class Dosen extends Model
 {
     use HasFactory;
-    // Menggunakan fillable dan memasukkan nama array yang bisa dimasukkan nilainya, nama array berdasarkan nama kolom tabel yang diinginkan
-    protected $fillable = ['npm','nama','jurusan','nip_dosen'];
+    protected $fillable = ['nip','nama'];
     // Menggunakan protected agar tabel bisa di akses dan mendefinisikan tabel mana yang akan di isi
-    protected $table = 'mahasiswa';
+    protected $table = 'dosen';
     // Karena tidak menggunakan timestamps maka timestamps di berikan nilai false
     public $timestamps = false;
-    public function dosen()
+    public function mahasiswas()
     {
-        return $this->belongsTo(Dosen::class,'nip_dosen', 'nip');    
+        return $this->hasMany(mahasiswa::class,'nip_dosen', 'nip');    
     }
 }
-

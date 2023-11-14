@@ -28,6 +28,7 @@
                 <th class="col-md-3">NPM</th>
                 <th class="col-md-4">Nama</th>
                 <th class="col-md-2">Jurusan</th>
+                <th class="col-md-4">Dosen Pembimbing</th>
                 <th class="col-md-2">Aksi</th>
             </tr>
         </thead>
@@ -40,6 +41,7 @@
                 <td>{{ $item->npm }}</td>
                 <td>{{ $item->nama }}</td>
                 <td>{{ $item->jurusan }}</td>
+                <td>{{ $item->dosen->nama}}</td>
                 <td>
                     {{-- Tombol edit data --}}
                     <a href='{{ url('mahasiswa/'.$item->npm.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>

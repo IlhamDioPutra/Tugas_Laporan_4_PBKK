@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -42,4 +42,40 @@
     </table>
     
 </body>
-</html>
+</html> --}}
+{{-- Tag html berasal dari template dan bootstrap dan lainnya juga dari template --}}
+@extends('layout.template')
+{{-- Isi konten yang dimaksud ini akan berkolerasi dengan yield konten di template --}}
+@section('konten')
+    
+<!-- START DATA -->
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+    {{-- Ini adalah tombl untuk kembali --}}
+    <a href="{{ url('/')}}" class="btn btn-secondary" style="margin-bottom: 20px" ><< Kembali</a>
+   
+
+    {{-- Tabel yang berisi 5 kolom yaitu no, npm, nama, jurusan, dan aksi --}}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th class="col-md-1">Nama Dosen</th>
+                <th class="col-md-3">NIP</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{-- Mengisi data dengan perulangan foreach  --}}
+            <?php $i = 1; ?>
+            @foreach ($data as $item)
+                <tr>
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $item->nama }}</td>
+                    <td>{{ $item->nip }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+</div>
+<!-- AKHIR DATA -->
+@endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
 use App\Models\mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -23,9 +24,12 @@ class mahasiswaController extends Controller
                 ->paginate($jumlahbaris);
         }
         else {
-            $data = mahasiswa::orderBy('npm')->paginate($jumlahbaris); //Jika tidak ada pencarian maka menampilkan data asli saja
+            $data = mahasiswa::with('dosen')->orderBy('npm')->paginate($jumlahbaris); //Jika tidak ada pencarian maka menampilkan data asli saja ->orderBy('npm')->paginate($jumlahbaris)
         }
-        return view('mahasiswa.index')->with('data',$data); //view yang ditampilkan adalah di url mahasiswa/index.template
+        return view('mahasiswa.index', compact('data'));
+
+        //  "dosen" => dosen::with('mahasiswa')->get()
+         //view yang ditampilkan adalah di url mahasiswa/index.template
     }
 
     /**
@@ -33,7 +37,10 @@ class mahasiswaController extends Controller
      */
     public function create()
     {
-        return view('mahasiswa.create');
+        $data = Dosen::all();
+        return view('mahasiswa.create',[
+            'datas' => $data
+        ]);
         //menampilkan halaman create untuk mahasiswa
     }
 
@@ -46,10 +53,12 @@ class mahasiswaController extends Controller
         Session::flash('npm',$request->npm);
         Session::flash('nama',$request->nama);
         Session::flash('jurusan',$request->jurusan);
+        Session::flash('nip_dosen',$request->nip_dosen);
         $request->validate([
             'npm'=>'required|unique:mahasiswa,npm', // npm harus di isi dan tidak boleh sama (unique) satu sama lain antar npm
             'nama'=>'required', // kolom nama harus diisi
             'jurusan'=>'required', // kolom jurusan harus diisi
+            'nip_dosen'=>'required', // kolom jurusan harus diisi
         ],
         [
             'npm.required'=>'npm WAJIB DI ISI', // pesan error jika npm tidak diisi 
@@ -62,6 +71,7 @@ class mahasiswaController extends Controller
             'npm' => $request->npm, // data npm diambil dari request npm yang ada di form post di mahasiswa/create.blade.php
             'nama' => $request->nama, // data nama diambil dari request npm yang ada di form post di mahasiswa/create.blade.php
             'jurusan' => $request->jurusan,// data jurusan diambil dari request npm yang ada di form post di mahasiswa/create.blade.php
+            'nip_dosen' => $request->nip_dosen,// data NIP diambil dari request npm yang ada di form post di mahasiswa/create.blade.php
         ];
         mahasiswa::create($data); // jika selesai semua diatas maka data akan dibuat
         return redirect()->to('mahasiswa')->with('success','Data berhasil ditambahkan'); 

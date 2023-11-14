@@ -36,8 +36,17 @@
                     <input type="text" class="form-control" name='jurusan' id="jurusan" value = "{{ Session::get('jurusan') }}">
                 </div>
             </div>
+            <div>
+                <label class="mb-2 block font-semibold" for="nip_dosen">Author <span class="text-red-500">*</span></label>
+                <select name="nip_dosen" required id="nip_dosen" class="form-control">
+                  <option value="">Select author name</option>
+                   @foreach ($datas as $data)
+                   <option value="{{ $data->nip }}">{{ $data->nama }}</option>
+                   @endforeach
+                </select>
+              </div>
             <div class="mb-3 row">
-                <label for="jurusan" class="col-sm-2 col-form-label"></label>
+                {{-- <label for="jurusan" class="col-sm-2 col-form-label"></label> --}}
                 {{-- Tombol submit --}}
                 <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
             </div>
